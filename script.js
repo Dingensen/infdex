@@ -39,80 +39,54 @@ class ChunkCollection {
   constructor(params){
     switch(params.initDirection){
       case undefined:
-        this.initDirection = 0; //right
+        this.initDirection = 3; //right
         break;
       case "right":
-        this.initDirection = 0; //right
+        this.initDirection = 3; //right
         break;
       case "down":
-        this.initDirection = 1; //down
+        this.initDirection = 0; //down
         break;
       case "left":
-        this.initDirection = 2; //left
+        this.initDirection = 1; //left
         break;
       case "up":
-        this.initDirection = 3; //up
+        this.initDirection = 2; //up
         break;
     }
     this.chunklist = [];
   }
 
-  setIndex(i, input){
+  setIdx(i, input){
     this.chunklist[i] = input;
   }
 
-  neighbourIndex(index, direction, distance){
-    //define all useful variables for finding your place in the spiral
-    let prevHalfLoopLength        = Math.floor(Math.sqrt(index));
-    let halfLoopLength            = Math.floor(Math.sqrt(index))+1;
-    let currentHalfLoop           = prevHalfLoopLength^2;
-    let nextHalfLoop              = halfLoopLength^2;
-    let currentSpiralDirection;
+  idxDirection(index){
+    let hlfLoopLength = Math.floor(Math.sqrt(index))+1;
+    let idxHalfLoop = (hlfLoopLength-1)**2
+    console.log({hlfLoopLength,idxHalfLoop})
 
-    //find out what direction the current loop segment goes
-    if(halfLoopLength % 2 != 0){
-      if(currentHalfLoop+halfLoopLength > index){
-        currentSpiralDirection = 1;
+    //if the index is uneven, it is either down or left
+    if(idxHalfLoop % 2 != 0){
+      console.log(`cd1 ${index}`)
+      console.log(`idx ${idxHalfLoop}`)
+      if(idxHalfLoop + hlfLoopLength >= index){ //check for down
+        return 0;
       } else {
-        currentSpiralDirection = 0;
+        return 1;
       }
-    } else {
-      if(currentHalfLoop+halfLoopLength > index){
-        currentSpiralDirection = 3;
+    }else{ //if it's even it's gonna be up or right
+      console.log(`cd2 ${index}`)
+      console.log(`idx ${idxHalfLoop}`)
+
+      if(idxHalfLoop + hlfLoopLength >= index){ //check for down
+        return 2;
       } else {
-        currentSpiralDirection = 2;
+        return 3;
       }
     }
-    currentSpiralDirection = (this.initDirection+currentSpiralDirection) % 4;
 
-    let distanceFromLast = index-currentHalfLoop;
-    switch(direction){
 
-      case "right":
-        direction = 0;
-        //if current direction lines up with the desired one...
-        //toooo complex. back to the drawing board
-        if(currentSpiralDirection === direction){
-            index += (nextHalfLoop-index)+1;
-
-        }
-        break;
-      case "down":
-        direction = 1;
-        // let distanceFromLast = index-currentHalfLoop;
-
-        break;
-      case "left":
-        direction = 2;
-        // let distanceFromLast = index-currentHalfLoop;
-
-        break;
-      case "up":
-        direction = 3;
-        // let distanceFromLast = index-currentHalfLoop;
-
-        break;
-    }
   }
 
 
