@@ -12,9 +12,10 @@
 var chunks = new ChunkCollection({});
 
 QUnit.module('get Neighbour Index', function(){
-  QUnit.test('circular Neighbour indices', (assert)=>{
-    assert.equal(chunks.neighbourIndexCircular(1,"cc",5),1,"edge case: counterclockwise rotation on index 1");
-    assert.equal(chunks.neighbourIndexCircular(1,"c",3),4,"clockwise rotation from 1 by 3");
+  QUnit.test('Neighbour indices', (assert)=>{
+    assert.equal(chunks.neighbourIndex(22,"right",4),26,"22 --4right--> 26");
+    assert.equal(chunks.neighbourIndex(22,"right",5),51,"22 --5right--> 51");
+
 
   });
 });

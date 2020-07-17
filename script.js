@@ -61,25 +61,6 @@ class ChunkCollection {
     this.chunklist[i] = input;
   }
 
-  neighbourIndexCircular(currentIndex, direction, distance){
-    let newIndex;
-
-    //TODO: refactor this later. Don't yandev this!
-    //counterclockwise
-    if(direction === "cc"){
-      newIndex = currentIndex-distance;
-    }
-    //clockwise
-    else if (direction === "c") {
-      newIndex = currentIndex + distance;
-    }
-
-    if(newIndex<1){
-      newIndex=1;
-    }
-    return newIndex;
-  }
-
   neighbourIndex(index, direction, distance){
     //define all useful variables for finding your place in the spiral
     let prevHalfLoopLength        = Math.floor(Math.sqrt(index));
@@ -89,7 +70,7 @@ class ChunkCollection {
     let currentSpiralDirection;
 
     //find out what direction the current loop segment goes
-    if(halfLoopLength != 0){
+    if(halfLoopLength % 2 != 0){
       if(currentHalfLoop+halfLoopLength > index){
         currentSpiralDirection = 1;
       } else {
@@ -104,24 +85,35 @@ class ChunkCollection {
     }
     currentSpiralDirection = (this.initDirection+currentSpiralDirection) % 4;
 
+    let distanceFromLast = index-currentHalfLoop;
     switch(direction){
+
       case "right":
         direction = 0;
-        let distanceFromLast = index-currentHalfLoop;
+        //if current direction lines up with the desired one...
+        //toooo complex. back to the drawing board
+        if(currentSpiralDirection === direction){
+            index += (nextHalfLoop-index)+1;
+
+        }
         break;
       case "down":
         direction = 1;
+        // let distanceFromLast = index-currentHalfLoop;
+
         break;
       case "left":
         direction = 2;
+        // let distanceFromLast = index-currentHalfLoop;
+
         break;
       case "up":
         direction = 3;
+        // let distanceFromLast = index-currentHalfLoop;
+
         break;
     }
-
-
   }
 
-  moveOutwards(index, distance){}
+
 }
