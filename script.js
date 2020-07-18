@@ -53,8 +53,14 @@ class ChunkCollection {
 //     | ----------------------------------    |
 //       ..   62   61   60   59   58   57   56 |
 //     -----------------------------------------
+//
+//     a_n = 2n-1                               (upper right diagonal)
+//     b_n = 2n                                 (lower left diagonal)
+//     c_n = (a_n)^2+a_n = (2n+1)^2 + (2n+1)    (lower right diagonal)
+//     d_n = (b_n)^2+b_n = (2n)^2 + 2n          (lower right diagonal)
 
   constructor(params){
+    //direction doesn't do anything yet
     switch(params.initDirection){
       case undefined:
         this.initDirection = 3; //right
@@ -97,7 +103,14 @@ class ChunkCollection {
         return 3;
       }
     }
+  }
 
+//  neighbours = [0,1,2,3,4,5,6,7]
+//  --->
+//  5   6   7
+//  4   i   0
+//  3   2   1
+  nearestNeighbour(index){
 
   }
 
