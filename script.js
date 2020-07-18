@@ -36,6 +36,24 @@ function indicateVersion(ver){
 }
 
 class ChunkCollection {
+//     -----------------------------------------
+//     | 42   43   44   45   46   47   48   49 |
+//     |    -------------------------------    |
+//     | 41 | 20   21   22   23   24   25 | 50 |
+//     |    |    ---------------------    |    |
+//     | 40 | 19 |  6    7    8    9 | 26 | 51 |
+//     |    |    |    -----------    |    |    |
+//     | 39 | 18 |  5 |  0    1 | 10 | 27 | 52 |
+//     |    |    |    ------    |    |    |    |
+//     | 38 | 17 |  4    3    2 | 11 | 28 | 53 |
+//     |    |    ----------------    |    |    |
+//     | 37 | 16   15   14   13   12 | 29 | 54 |
+//     |    --------------------------    |    |
+//     | 36   35   34   33   32   31   30 | 55 |
+//     | ----------------------------------    |
+//                 ..   60   59   58   57   58 |
+//     -----------------------------------------
+
   constructor(params){
     switch(params.initDirection){
       case undefined:
@@ -62,24 +80,18 @@ class ChunkCollection {
   }
 
   idxDirection(index){
-    let hlfLoopLength = Math.floor(Math.sqrt(index))+1;
-    let idxHalfLoop = (hlfLoopLength-1)**2
-    console.log({hlfLoopLength,idxHalfLoop})
+    let hlfLoopLength = Math.floor(Math.sqrt(index));
+    let idxHalfLoop = (hlfLoopLength)**2
 
     //if the index is uneven, it is either down or left
     if(idxHalfLoop % 2 != 0){
-      console.log(`cd1 ${index}`)
-      console.log(`idx ${idxHalfLoop}`)
-      if(idxHalfLoop + hlfLoopLength >= index){ //check for down
+      if(idxHalfLoop + hlfLoopLength > index){ //check for down
         return 0;
       } else {
         return 1;
       }
     }else{ //if it's even it's gonna be up or right
-      console.log(`cd2 ${index}`)
-      console.log(`idx ${idxHalfLoop}`)
-
-      if(idxHalfLoop + hlfLoopLength >= index){ //check for down
+      if(idxHalfLoop + hlfLoopLength > index){ //check for down
         return 2;
       } else {
         return 3;
