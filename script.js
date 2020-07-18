@@ -91,7 +91,7 @@ class ChunkCollection {
         return 1;
       }
     }else{ //if it's even it's gonna be up or right
-      if(idxHalfLoop + hlfLoopLength > index){ //check for down
+      if(idxHalfLoop + hlfLoopLength > index){ //check for up
         return 2;
       } else {
         return 3;
