@@ -105,12 +105,21 @@ class ChunkCollection {
     }
   }
 
-//  neighbours = [0,1,2,3,4,5,6,7]
+//  neighbours = [0,1,2,3]
 //  --->
-//  5   6   7
-//  4   i   0
-//  3   2   1
-  nearestNeighbour(index){
+//  -   3   -
+//  2   i   0
+//  -   1   -
+  nearestNeighbours(idx){
+    var outarr = [];
+
+    let lastDir = this.idxDirection(idx-1)
+    let thisDir = this.idxDirection(idx)
+    let nextDir = this.idxDirection(idx+1)
+
+    if(lastDir === thisDir === nexDir){
+
+    }
 
   }
 
