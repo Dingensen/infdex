@@ -105,23 +105,30 @@ class ChunkCollection {
     }
   }
 
-//  neighbours = [0,1,2,3]
-//  --->
-//  -   3   -
-//  2   i   0
-//  -   1   -
+  //  neighbours = [0,1,2,3]
+  //  --->
+  //  -   3   -
+  //  2   i   0
+  //  -   1   -
   nearestNeighbours(idx){
     var outarr = [];
 
-    let lastDir = this.idxDirection(idx-1)
-    let thisDir = this.idxDirection(idx)
-    let nextDir = this.idxDirection(idx+1)
+    let lastDir = this.idxDirection(idx-1);
+    let thisDir = this.idxDirection(idx);
+    let nextDir = this.idxDirection(idx+1);
 
-    if(lastDir === thisDir === nexDir){
+    if(lastDir === thisDir === nextDir){
 
     }
 
   }
 
+  // directions:
+  //  -   3   -
+  //  2   i   0
+  //  -   1   -
+  moveIdx(idx, direction){
+
+  }
 
 }

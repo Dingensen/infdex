@@ -9,6 +9,8 @@
 // jshint -W097
 "use strict";
 
+var QUnit;
+
 QUnit.module('get index direction', function(){
   var c = new ChunkCollection({});
   QUnit.test("index directions", (assert)=>{
@@ -35,6 +37,19 @@ QUnit.module('get index direction', function(){
 
 QUnit.module('get Neighbour Index', function(){
   var c = new ChunkCollection({});
+  QUnit.test('move direction', (assert)=>{
+    assert.equal(c.moveIdx(0,0),3,"move down from 0");
+    assert.equal(c.moveIdx(0,1),5,"move left from 0");
+    assert.equal(c.moveIdx(0,2),7,"move up from 0");
+    assert.equal(c.moveIdx(0,3),1,"move right from 0");
+
+    assert.equal(c.moveIdx(10,0),11,"move down from 10");
+    assert.equal(c.moveIdx(10,1),1,"move left from 10");
+    assert.equal(c.moveIdx(10,2),9,"move up from 10");
+    assert.equal(c.moveIdx(10,3),27,"move right from 10");
+
+  });
+
   QUnit.test('Neighbour indices', (assert)=>{
     // assert.equal(c.nearestNeighbours(0),[ 1, 2, 3, 4, 5, 6, 7, 8],"center") //center
     //
